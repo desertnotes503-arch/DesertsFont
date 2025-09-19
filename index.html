@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>沙漠手寫體 Demo</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+        body {
+            font-family: 'deserts_fontregular', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 60px 20px;
+            background-color: #948F89;
+
+            /* 背景淡線條 */
+            background-image: 
+                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(45deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 40px 40px, 40px 40px, 80px 80px;
+            background-repeat: repeat;
+        }
+
+        h1 {
+            font-weight: normal; 
+            font-size: 64px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #fff;
+        }
+
+        p {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        textarea {
+            width: 80%;
+            max-width: 900px;
+            height: 300px;
+            font-size: 48px;
+            font-family: 'deserts_fontregular', sans-serif;
+            line-height: 1.4; /* 行距調大 */
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            background: #fefefe;
+            resize: none;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            letter-spacing: 0px;
+            transition: border-color 0.3s, box-shadow 0.3s, font-size 0.2s, letter-spacing 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #999;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .controls {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            color: #fff;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input[type="range"] {
+            width: 70%;
+        }
+
+        label {
+            flex: 1;
+            font-size: 20px; /* 調大文字 */
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>沙漠手寫體 Demo</h1>
+    <p>在下面輸入文字，測試字體：</p>
+    <textarea id="demoText" placeholder="輸入文字..."></textarea>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="fontSize">字體大小: <span id="fontSizeVal">48</span>px</label>
+            <input type="range" id="fontSize" min="24" max="72" value="48">
+        </div>
+        <div class="control-group">
+            <label for="letterSpacing">字間距: <span id="letterSpacingVal">0</span>px</label>
+            <input type="range" id="letterSpacing" min="-5" max="10" value="0" step="0.1">
+        </div>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('demoText');
+        const fontSizeSlider = document.getElementById('fontSize');
+        const letterSpacingSlider = document.getElementById('letterSpacing');
+        const fontSizeVal = document.getElementById('fontSizeVal');
+        const letterSpacingVal = document.getElementById('letterSpacingVal');
+
+        fontSizeSlider.addEventListener('input', () => {
+            textarea.style.fontSize = fontSizeSlider.value + 'px';
+            fontSizeVal.textContent = fontSizeSlider.value;
+        });
+
+        letterSpacingSlider.addEventListener('input', () => {
+            textarea.style.letterSpacing = letterSpacingSlider.value + 'px';
+            letterSpacingVal.textContent = letterSpacingSlider.value;
+        });
+    </script>
+</body>
+</html>
